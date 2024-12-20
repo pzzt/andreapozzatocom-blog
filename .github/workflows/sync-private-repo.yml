@@ -22,11 +22,11 @@ jobs:
       with:
         repository: pzzt/andreapozzatocom-private.git  # Sostituisci con il nome del tuo repository privato
         token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}  # Usa il PAT che hai creato
-        path: /
+        path: private-repo
 
     - name: Copy folder from private repository to public repository
       run: |
-        cp -r content ./andreapozzatocom-blog/content  # Sostituisci con i percorsi reali
+        cp -r private-repo/content ./andreapozzatocom-blog/content  # Sostituisci con i percorsi reali
 
     - name: Commit changes
       run: |
