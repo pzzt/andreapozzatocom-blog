@@ -1,0 +1,35 @@
+name: Sync Private Repo to Public Repo
+
+on:
+  push:
+    branches:
+      - main  # O il branch su cui desideri che scatti il trigger, es. 'master'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout public repository
+      uses: actions/checkout@v2
+
+    - name: Set up Git
+      run: |
+        git config --global user.name "github-actions"
+        git config --global user.email "github-actions@github.com"
+    
+    - name: Checkout private repository
+      uses: actions/checkout@v2
+      with:
+        repository: pzzt/andreapozzatocom-private.git  # Sostituisci con il nome del tuo repository privato
+        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}  # Usa il PAT che hai creato
+        path: private-repo
+
+    - name: Copy folder from private repository to public repository
+      run: |
+        cp -r andreapozzatocom-private/content/ ./  # Sostituisci con i percorsi reali
+
+    - name: Commit changes
+      run: |
+        git add .
+        git commit -m "Sync"
+        git push
