@@ -30,7 +30,10 @@ jobs:
 
     - name: Copy folder from private repository to public repository
       run: |
-        cp -r private-repo/content/blog ./blog  # Sostituisci con i percorsi reali
+        cp -r private-repo/content/blog ./blog 
+    
+    - name: remove private-repo folder
+      run: rm -rf private-repo
 
     - name: Commit changes
       run: |
