@@ -26,7 +26,7 @@ jobs:
 
     - name: Copy folder from private repository to public repository
       run: |
-        cp -r pzzt/andreapozzatocom-private/content/ ./pzzt/andreapozzatocom-blog  # Sostituisci con i percorsi reali
+        cp -r private-repo/andreapozzatocom-private/content ./andreapozzatocom-blog/  # Sostituisci con i percorsi reali
 
     - name: Commit changes
       run: |
