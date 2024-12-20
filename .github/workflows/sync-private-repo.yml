@@ -20,7 +20,8 @@ jobs:
     - name: Checkout private repository
       uses: actions/checkout@v2
       with:
-        repository: pzzt/andreapozzatocom-private.git  # Sostituisci con il nome del tuo repository privato
+        repository: pzzt/andreapozzatocom-private.git # Sostituisci con il nome del tuo repository privato
+        ref: main
         token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}  # Usa il PAT che hai creato
         path: private-repo
 
