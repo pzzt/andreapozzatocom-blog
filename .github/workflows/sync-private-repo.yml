@@ -33,7 +33,7 @@ jobs:
         cp -r private-repo/content/blog ./blog 
     
     - name: remove private-repo folder
-      run: rm -rf private-repo
+      run: rm -rf private-repo 
 
     - name: Commit changes
       run: |
