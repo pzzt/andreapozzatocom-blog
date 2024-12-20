@@ -5,6 +5,9 @@ on:
     branches:
       - main  # O il branch su cui desideri che scatti il trigger, es. 'master'
 
+permissions:
+  contents: write
+
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -27,10 +30,13 @@ jobs:
 
     - name: Copy folder from private repository to public repository
       run: |
-        cp -r private-repo/content ./content  # Sostituisci con i percorsi reali
+        cp -r private-repo/content/blog ./blog  # Sostituisci con i percorsi reali
 
     - name: Commit changes
       run: |
+        git config user.name "GitHub Actions Bot"
+        git config user.email "actions@github.com"
         git add .
-        git commit -m "Sync"
-        git push
+        git commit -m "Sync - $(date +"%Y%m%d%H%m")"
+        git remote set-url origin https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/pzzt/andreapozzatocom-blog.git
+        git push origin main
